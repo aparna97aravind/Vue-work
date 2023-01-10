@@ -1,6 +1,6 @@
 <template>
     <div id="container">
-      <h2 class="text-center mt-5">LIST YOUR TASKS HERE</h2>
+      <h3 class="text-center mt-5">LIST YOUR TASKS HERE</h3>
   
       <div class="d-flex">
         <input v-model="task" type="text" placeholder="Enter Task" class="form-control" />

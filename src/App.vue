@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Hello world</h2>
+    <h2 class="text-center mt-5">TODO LIST APP</h2>
     <todolist></todolist>
   </div>
 </template>
