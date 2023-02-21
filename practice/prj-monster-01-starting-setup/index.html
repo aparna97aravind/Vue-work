@@ -41,6 +41,14 @@
       <button @click="healPlayer">HEAL</button>
       <button @click="surrender">SURRENDER</button>
     </section>
+    <section id="log" class="container">
+      <h2>Battle Log</h2>
+      <ul>
+        <li v-for="message in logMessage">
+           {{ message.actionBy }} {{ message.actionType}} {{ message.actionTo}}
+            - {{ message.actionvalue }}</li>
+      </ul>
+    </section>
   </div>
 </body>
 

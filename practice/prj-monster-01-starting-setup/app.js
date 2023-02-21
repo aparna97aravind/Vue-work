@@ -10,6 +10,7 @@ const app = Vue.createApp({
             playerHealth: 100,
             gameCount: 0,
             winner: null,
+            logMessage : [],
         }
     },
     methods: {
@@ -18,18 +19,21 @@ const app = Vue.createApp({
             this.gameCount++;
             const attackValue = attackCalc(12, 5);
             this.monsterHealth -= attackValue;
+            this.displayLogMessage('Player', 'Attacks','Monster', attackValue);
             this.attackPlayer(); // If monster is attacked,Then it attacks the player back
         },
         attackPlayer() {
             console.log("ATTACKING PLAYER");
             const attackValue = attackCalc(18, 10);
             this.playerHealth -= attackValue;
+            this.displayLogMessage('Monster', 'Attacks', 'Player', attackValue);
         },
         specialAttackMonster() {
             console.log(" SPECIAL ATTACKING MONSTER");
             this.gameCount++;
             const attackValue = attackCalc(25, 10);
             this.monsterHealth -= attackValue;
+            this.displayLogMessage('Player', 'Special Attacks','Monster', attackValue);
             this.attackPlayer(); // If monster is attacked,Then it attacks the player back
         },
         healPlayer() {
@@ -40,16 +44,27 @@ const app = Vue.createApp({
             } else {
                 this.playerHealth += healValue;
             }
+            this.displayLogMessage('Player', 'Heals by','Player', healValue);
             this.attackPlayer();
         },
         surrender() {
             this.winner = "monster";
+            this.displayLogMessage('Player', 'Surrendered');
         },
         startnewGame() {
             this.monsterHealth = 100;
             this.playerHealth = 100;
             this.gameCount = 0;
             this.winner = null;
+            this.logMessage = [];
+        },
+        displayLogMessage(who, what, whom, value) {
+        this.logMessage.unshift({
+            actionBy : who,
+            actionTo : whom,
+            actionType : what,
+            actionvalue : value,
+        })
         }
     },
     watch: {
